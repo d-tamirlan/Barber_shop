@@ -1,3 +1,11 @@
+#my ignore files
+manage.py
+Barber_shop/settings.py
+Barber_shop/wsgi.py
+.idea/
+Barber_shop/__pycache__/
+#=======================
+
 # Windows image file caches
 Thumbs.db
 ehthumbs.db
