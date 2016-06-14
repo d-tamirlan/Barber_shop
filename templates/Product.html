@@ -1,0 +1,60 @@
+{% extends "Base.html" %}
+
+
+{% load staticfiles %}
+
+{% block product %}
+<link rel="stylesheet" href="{% static "css/product-style.css" %}">
+<main>
+	<div class="container clearfix">
+		<div class="bread-crumbs">
+			<h1>{{product.product_name}}</h1>
+			<ul class="crumbs">
+				<li><a href="/">ГЛАВНАЯ</a></li>
+				<li><a href="/shop/">МАГАЗИН</a></li>
+				<li>{{product.product_name}}</li>
+			</ul>
+		</div>
+		<section class="product-images">
+			{% for image in images %}
+				{% if forloop.first %}
+					<div class="big-img">
+						<a href="{{image.image.url}}"><img src="{{image.image.url}}" alt="image"></a>
+					</div>
+				{% else %}
+					<div class="small-img">
+						<a href="{{image.image.url}}"><img src="{{image.image.url}}" alt="image"></a>
+					</div>
+				{% endif %}
+			{% endfor %}
+		</section>
+		<section class="product-info">
+			{% if product.in_stock %}
+				<p>Есть в наличии</p>
+			{% else %}
+				<p>Нет в наличии</p>
+			{% endif %}
+
+			<p class="discription">
+				{{product.description |safe}}
+			</p>
+			<p><span class="price">{{product.price}} РУБ.</span><a href="/order/?prod_name={{product.product_name}}" class="btn">КУПИТЬ</a></p>
+
+			{% if product.in_kit %}
+				<h2>В НАБОР ВХОДЯТ:</h2>
+				<ul class="custom-ul-1">
+					{% for item in product.in_kit %}
+						<li>{{item}}</li>
+					{% endfor %}
+				</ul>
+			{% endif %}
+				<!--  <li>СРЕДСТВО ДЛЯ УМЫВАНИЯ (50 МЛ)</li>
+				<li>УВЛОЖНЯЮЩИЙ КРЕМ (50 МЛ)</li>
+				<li>КРЕМ ДЛЯ БРИТЬЯ (50 МЛ)</li>
+				<li>КРЕМ ПОСЛЕ БРИТЬЯ, ШАМПУНЬ (50 МЛ)</li>
+				<li>УДОБНАЯ КОЖАНАЯ КОСМЕТИЧКА</li>-->
+		</section>
+	</div>
+</main>
+
+{% endblock product %}

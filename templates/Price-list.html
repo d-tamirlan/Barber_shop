@@ -1,0 +1,73 @@
+{% extends "Base.html" %}
+
+
+{% load staticfiles %}
+
+{% block price-list %}
+<link rel="stylesheet" href="{% static "css/price-list-style.css" %}">
+<main>
+	<div class="container">
+		<div class="bread-crumbs">
+			<h1>ПРАЙС-ЛИСТ</h1>
+			<ul class="crumbs">
+				<li><a href="/">Главная</a></li>
+				<li>ПРАЙС-ЛИСТ</li>
+			</ul>
+		</div>
+		<div class="big-heading">
+			<h2>ИСТИННО МУЖСКАЯ КЛАССИКА</h2>
+		</div>
+		<div class="content clearfix">
+			<div class="content-left">
+				<h2>Мы используем только лучшие средства:</h2>
+				<ul class="custom-ul-1">
+					{% for manufacturer in manufacturers %}
+						<li>{{manufacturer.name}}</li>
+					{% endfor %}
+					<!--  <li>BAXTER OF CALIFORNIA</li>
+					<li>MR NATTY</li>
+					<li>SUAVECITO</li>
+					<li>MALIN + GOETS</li>-->
+				</ul>
+			</div>
+			<div class="content-right">
+				<h2>Цены на услуги наших мастеров:</h2>
+				<table>
+					{% for price_service in price_services %}
+						<tr>
+							<td>{{price_service.service}}</td>
+							<td>{{price_service.price}} Р.</td>
+						</tr>
+					{% endfor %}
+					<!-- <tr>
+						<td>Стрижка</td>
+						<td>1 500 р.</td>
+					</tr>
+					<tr>
+						<td>Стрижка бороды</td>
+						<td> 500 р.</td>
+					</tr>
+					<tr>
+						<td>Накрутка усов</td>
+						<td>350 р.</td>
+					</tr> -->
+				</table>
+				
+			</div>
+			<div class="about-us clearfix">
+				<h2>Несколько слов о нас:</h2>
+				<div class="about-us-left">
+					{{about_us.0.description1 |safe}}
+					<!--  Наша парикмахерская занимается исключительно мужскими стрижками. Стрижка каждого клиента для нас - это уникальная и продуманная до мелочей работа. Мы не работаем на количество, мы делаем качество.-->
+					
+				</div>
+				<div class="about-us-right">
+					{{about_us.0.description2 |safe}}
+				<!--  
+					Наша мастерская расположена в центре города, поэтому сделать стильную стрижку можно в любое время, даже в обеденный перерыв. Здесь вы можете погрузиться в удобную для вас атмосферу, чувствовать себя комфортно и свободно!-->
+				</div>
+			</div>
+		</div>
+	</div>
+</main>
+{% endblock price-list %}

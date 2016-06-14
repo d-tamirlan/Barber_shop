@@ -1,0 +1,32 @@
+{% extends "Base.html" %}
+
+{% load staticfiles %}
+
+{% block private_office %}
+<link rel="stylesheet" href="{% static "css/catalog-style.css" %}">
+	<main class="container">
+		<div class="office-menu">
+			<a href="#"><span class="profile_menu btn">Профиль</span></a>
+			<a href="#"><span class="orders_menu btn">Заказы</span></a>
+			<a href="#"><span class="records_menu btn">Записи</span></a>
+		</div>
+		<div class="profile" id="profile">
+			<p>Логин: {{user.username}}</p>
+			<p>Имя: {{user.first_name}}</p>
+		</div>
+		<div class="orders" id="orders">
+			{% for order in orders %}
+				<p>{{order.product_name}}</p>
+				<p>{{order.price}} Р.</p>
+				<hr>
+			{% endfor %}
+		</div>
+		<div class="records" id="records">
+			{% for record in records %}
+				<p>{{record.date}}</p>
+				<p>{{record.time}}</p>
+				<hr>
+			{% endfor %}
+		</div>
+	</main>
+{% endblock private_office %}

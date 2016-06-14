@@ -1,0 +1,76 @@
+{% extends "Base.html" %}
+
+
+{% load staticfiles %}
+
+{% block shop %}
+<link rel="stylesheet" href="{% static "css/catalog-style.css" %}">
+<main>
+	<div class="container clearfix">
+		<div class="bread-crumbs">
+			<h1>СРЕДСТВА ДЛЯ УХОДА</h1>
+			<ul class="crumbs">
+				<li><a href="/">Главная</a></li>
+				<li>Магазин</li>
+			</ul>
+		</div>
+		<div class="flex-container">
+			<div class="aside">
+				<form action="/shop/" method="POST">
+					{%csrf_token%}
+					<input type="hidden" name="post_name" value="shop">
+					<legend>ПРОИЗВОДИТЕЛИ:</legend>
+					<ul class="aside-producers">
+						{% for manufacturer in manufacturers %}
+							<li>
+								<label>
+									<input type="checkbox" name="manufacturers" value="{{manufacturer.name}}"> {{manufacturer.name}}
+								</label>
+							</li>
+						{% endfor %}
+					</ul>
+					<div class="products-group">
+						<legend>ГРУППЫ ТОВАРОВ:</legend>
+						<ul>
+							{% for group in groups %}
+								<li>
+									<label>
+										<input type="radio" name="group" value="{{group.name}}"> {{group.name}}
+									</label>
+								</li>
+							{% endfor %}
+						</ul>
+						<button type="submit" class="btn">Показать</button>
+					</div>
+				</form>
+			</div>
+			<section class="products clearfix">
+				{% for product in prod_page %}
+					<article class="products-item">
+						<a href="product/?prod_name={{product.product_name}}"><img src="{{product.image.image.url}}" alt="image"></a>
+						<br>
+						<p class="prod-name"><a href="product/?prod_name={{product.product_name}}">{{product.product_name}}</a></p>
+						<p><span class="price">{{product.price}} руб.</span>
+						<a href="/order/?prod_name={{product.product_name}}" class="btn">Купить</a></p>
+					</article>
+				{% endfor %}
+			
+			</section>
+
+
+		
+		</div>
+		<div class="pagination clearfix">
+			{% if show_pagination %}
+				{% for page in page_list.page_range %}
+					{% if forloop.counter == prod_page.number %}
+						<a href="#" class="active-page">{{page}}</a>
+					{% else %}
+						<a href="?page={{page}}" class="btn">{{page}}</a>
+					{% endif %}
+				{% endfor %}
+			{% endif %}
+		</div>
+	</div>
+</main>
+{% endblock shop %}

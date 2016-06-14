@@ -1,0 +1,167 @@
+.index-logo{
+	width: 368px;
+	height: 204px;
+	margin: 0 auto;
+	margin-bottom: 25px;
+}
+.index-logo img{
+	width: 368px;
+	height: 204px;
+}
+.features{
+	margin-bottom: 80px;
+}
+.features-item{
+	width: 300px;
+	float: left;
+	margin-right: 20px;
+	min-height: 175px;
+	text-align: center;
+}
+.features-item:last-child{
+	margin-right: 0px;
+}
+.features-name{
+	position: relative;
+	display: block;
+	font-size: 30px;
+	line-height: 42px;
+	padding-bottom: 40px;
+	margin-bottom: 30px;
+}
+.features-name::after{
+	content: "";
+	position: absolute;
+	bottom: 0;
+	left: 50%;
+	margin-left: -10px;
+	width: 20px;
+	height: 20px;
+	background-color: #f7f4f1;
+	transform: rotate(45deg);
+}
+.index-content{
+	color: #000000;
+}
+
+.index-content{
+	padding: 50px 60px;
+	margin-bottom: 35px;
+	background: url("/static/img/vertical-line.png") no-repeat 50% 90px,
+				#f8f5f2 url("/static/img/content-bg.png") ;
+}
+.index-content:last-child{
+	margin-bottom: 0px;
+}
+.index-content-left{
+	position: relative;
+	float: left;
+	width: 340px;
+	padding: 0 20px;
+	min-height: 330px;
+}
+.index-content-left a{
+	/*display: block;*/
+	/*position: absolute;*/
+	/*bottom: 0;*/
+	/*margin-top: 10px;*/
+}
+.index-content-right{
+	width: 300px;
+	padding: 0 20px;
+	float: right;
+	min-height: 330px;
+}
+.news-preview{
+	margin: 0;
+	padding: 0;
+	margin-bottom: 20px;
+}
+.news-preview li{
+	margin-bottom: 25px;
+}
+.news-preview li:last-child{
+	margin-bottom: 0px;
+}
+.news-preview time{
+	font-weight: normal;
+}
+.gallary{
+	position: relative;
+	margin-top: 35px;
+	height: 260px;
+}
+.gallary-content{
+	margin: 0;
+	padding: 0;
+	border: 7px solid #ffffff;
+	width: 280px;
+	height: 160px;
+	background-color: #6a6866;
+}
+.gallary-content img{
+	width: 100%;
+	height: 100%;
+}
+.gallary .btn{
+	position: absolute;
+	width: 140px;
+}
+.gallary-prev{
+	width: 140px
+	left: 0;
+	bottom: 0;
+	/*padding: 10px 50px;*/
+}
+.gallary-next{
+	width: 140px;
+	right: 0;
+	bottom: 0;
+	/*padding: 10px 50px;*/
+}
+.index-content-title{
+	margin-bottom: 30px;
+	/*text-align: center;*/
+}
+.index-content-left > p{
+	margin-bottom: 25px;
+}
+.index-content-left > p:last-child{
+	margin-bottom: 45px;
+}
+.recall, .travel{
+	margin-top: 30px;
+	display: inline-block;
+	/*width: 140px;*/
+}
+.recall{
+	margin-left: 20px;
+}
+
+.appointment-form input{
+	float: left;
+	line-height: 24px;
+	font-size: 14px;
+	font-family: 'PT Sans Narrow', 'Arial', sans-serif;
+	font-weight: 700;
+	text-transform: uppercase;
+	border: 2px solid #000000;
+	margin-right: 20px;
+	margin-bottom: 20px;
+	outline: none;
+	padding: 5px 15px;
+	width: 106px;
+	height: 30px;
+}
+
+.appointment-form input:nth-child(2n){
+	margin-right: 0px;
+}
+.appointment-form input:focus{
+	border: 2px solid #663d15;
+}
+.appointment-form button{
+	clear: both;
+	margin-top: 35px;
+	width: 100%;
+}

@@ -1,0 +1,49 @@
+{% extends "Base.html" %}
+
+
+{% load staticfiles %}
+
+{% block news %}
+<main class="container">
+<link rel="stylesheet" href="{% static "css/catalog-style.css" %}">
+	<div class="bread-crumbs">
+		<h1>СРЕДСТВА ДЛЯ УХОДА</h1>
+		<ul class="crumbs">
+			<li><a href="/">Главная</a></li>
+			<li>Новости</li>
+		</ul>
+	</div>
+	{% for news, images in news_dict.items %}
+		<div class="news">
+			<h2 class="news-title">{{news.title}}</h2>
+			<p class="news-description">
+				{{news.description|safe}}
+			</p>
+			{% if images %}
+				{% for news_image in images %}
+					{% if forloop.first %}
+						<div class="first-img">
+							<a href="{{news_image.image.url}}"><img src="{{news_image.image.url}}" alt="image"></a>
+						</div>
+					{% else %}
+						<div class="flex-container">
+							<div>
+								<a href="{{news_image.image.url}}"><img src="{{news_image.image.url}}" alt="image"></a>
+							</div>
+							<div>
+								<a href="{{news_image.image.url}}"><img src="{{news_image.image.url}}" alt="image"></a>
+							</div>
+							<div>
+								<a href="{{news_image.image.url}}"><img src="{{news_image.image.url}}" alt="image"></a>
+							</div>
+						</div>
+					{% endif %}
+				{% endfor %}
+			{% endif %}
+			<br>
+			<time>{{news.pub_date}}</time>
+		</div>
+	{% endfor %}
+		
+</main>
+{% endblock news %}

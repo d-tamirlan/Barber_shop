@@ -1,0 +1,37 @@
+{% extends "Base.html" %}
+
+{% load staticfiles %}
+{% block registration %}
+<link rel="stylesheet" href="{% static "css/catalog-style.css" %}">
+<main class="container">
+	<form action="/registration/" method="POST" id="reg-form">
+		{%csrf_token%}
+		<input type="hidden" name="post_name" value="registration">
+		<div class="registration clearfix">
+			<label>
+				ФИО <sup>*</sup>
+				<input type="text" name="full_name" required >
+				<!-- pattern="^[А-Яа-яЁё]+\s^[А-Яа-яЁё]+\s^[А-Яа-яЁё]+" -->
+			</label>
+			<label>
+				ЛОГИН <sup>*</sup>
+				{{reg_form.username}}
+			<p class="error">{{errors.username.0}}</p>
+			</label>
+			<label>
+				ПАРОЛЬ <sup>*</sup>
+				{{reg_form.password1}}
+			<p class="error">{{errors.password1.0}}</p>
+			</label>
+			<label>
+				ПОДТВЕРЖДЕНИЕ ПАРОЛЯ <sup>*</sup>
+				{{reg_form.password2}}
+			<p class="error">{{errors.password2.0}}</p>
+			</label>
+			<p class="error">{{error}}</p>
+
+			<button type="submit" class="btn-reg btn">Регистрация</button>
+		</div>
+	</form>
+</main>
+{% endblock registration %}

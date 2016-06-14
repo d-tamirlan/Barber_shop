@@ -1,0 +1,44 @@
+{% extends "Base.html" %}
+
+{% load staticfiles %}
+{% block registration %}
+<link rel="stylesheet" href="{% static "css/catalog-style.css" %}">
+<main class="container">
+	<form action="{{url}}" method="POST">
+		{%csrf_token%}
+		  <div class="order-prod-info">
+			<p>
+				НАЗВАНИЕ ТОВАРА: 
+				<span class="btn">{{prod_name}}</span>
+			</p>
+			<p>
+				ЦЕНА ТОВАРА: 
+				<span class="price">{{price}} РУБ.</span>
+			</p>
+		</div> 
+
+		<div class="registration">
+			<input type="hidden" name="post_name" value="order">
+			<label>
+				ФИО <sup>*</sup>
+				{{form.full_name}}
+				<p class="error">{{form.full_name.errors.0}}</p>
+			</label>
+			<label>
+				АДРЕСС <sup>*</sup>
+				{{form.address}}
+			<p class="error">{{form.address.errors.0}}</p>
+			</label>
+			<label>
+				НОМЕР ТЕЛЕФОНА <sup>*</sup>
+				{{form.tel_number}}
+			<p class="error">{{form.tel_number.errors.0}}</p>
+			</label>
+			
+			<p class="error">{{error}}</p>
+			<input type="hidden" id="order_message" name="order_successful" value="{{order_successful}}">
+			<button type="submit" class="btn-reg btn">КУПИТЬ</button>
+		</div>
+	</form>
+</main>
+{% endblock registration %}
