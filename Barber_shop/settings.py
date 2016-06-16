@@ -25,18 +25,13 @@ SECRET_KEY = 'p$kk$%=1)6+7_q@o-m8ipfq6ft&u-)#p&p*k#q*+)wsc32gktg'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
 
 
 
 # Application definition
 
 INSTALLED_APPS = [
-    # 'cms',
-    # 'treebeard',
-    # 'menus',
-    # 'sekizai',
-    # 'djangocms_admin_style',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

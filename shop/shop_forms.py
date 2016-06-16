@@ -1,5 +1,4 @@
 from django import forms
-from phonenumber_field import modelfields
 
 
 class OrderForm(forms.Form):

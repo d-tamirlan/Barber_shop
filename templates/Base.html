@@ -10,113 +10,115 @@
 	<link rel="stylesheet" href="{% static "css/base-style.css" %}">
 </head>
 <body>
-	<header class="main-header ">
-		<div class="container clearfix">
-			<nav class="main-navigation">
-				<ul>
-					{% if show_logo %}
+	<div class="wrapper">
+		<header class="main-header ">
+			<div class="container clearfix">
+				<nav class="main-navigation">
+					<ul>
+						{% if show_logo %}
+						{% else %}
+							<li class="logo">
+								<a href="/"><img src="{% static "img/logo.png" %}" alt="logo"></a>
+							</li>
+						{% endif %}
+						{% for nav_item in navigation %}
+							<li><a href="{{nav_item.url}}">{{nav_item.nav_item}}</a></li>
+						{% endfor %}
+					</ul>
+				</nav>
+				{% if auth_user %}
+					<div class="user-block">
+						<a href="/logout/?page={{url}}" class="log">Выход</a>
+					</div>
+					{% if staff_user %}
+						<a href="/admin/" class="office">Администрирование</a>
 					{% else %}
-						<li class="logo">
-							<a href="/"><img src="{% static "img/logo.png" %}" alt="logo"></a>
-						</li>
+						<a href="/private_office/" class="office">Личный кабинет</a>
 					{% endif %}
-					{% for nav_item in navigation %}
-						<li><a href="{{nav_item.url}}">{{nav_item.nav_item}}</a></li>
-					{% endfor %}
-				</ul>
-			</nav>
-			{% if auth_user %}
-				<div class="user-block">
-					<a href="/logout/?page={{url}}" class="log">Выход</a>
-				</div>
-				{% if staff_user %}
-					<a href="/admin/" class="office">Администрирование</a>
 				{% else %}
-					<a href="/private_office/" class="office">Личный кабинет</a>
+					<div class="user-block">
+						<a href="#" class="log" id="login">Вход</a>
+					</div>
 				{% endif %}
-			{% else %}
-				<div class="user-block">
-					<a href="#" class="log" id="login">Вход</a>
-				</div>
-			{% endif %}
-		</div>
-	</header>
+			</div>
+		</header>
 
-	{% block index %}
-	{% endblock index %}
-	
-	{% block price-list %}
-	{% endblock price-list %}
-	
-	{% block shop %}
-	{% endblock shop %}
-	
-	{% block product %}
-	{% endblock product %}
-	
-	{% block news %}
-	{% endblock news %}
-	
-	{% block catalog %}
-	{% endblock catalog %}
-	
-	{% block registration %}
-	{% endblock registration %}
-
-	{% block private_office %}
-	{% endblock private_office %}
+		{% block index %}
+		{% endblock index %}
 		
-	<footer class="main-footer">
-		<div class="container clearfix	">
-			<section class="footer-contacts" id="contacts">
-				<p>
-					<!--  Барбершоп "Бородинский"<br>
-					Адрес: г. Санкт-Петербург, Б. Конюшеннаяд, д. 19/18 <br>
-					Телефон: +7 (812) 666-02-66-->
-					{{contact_info.info |safe}}
-					<a href="#">Как нас найти?</a><br>
-				</p>
-			</section>
-			<section class="footer-soc">
-			<p>Давайте дружить!</p>
-				<a href="#" class="social-btn social-btn-vk"></a>
-				<a href="#" class="social-btn social-btn-fb"></a>
-				<a href="#" class="social-btn social-btn-inst"></a>
-			</section>
-			<section class="footer-copyright">
-				<p>Разработано:</p>
-				<a href="#" class="btn">HTML Academy</a>
-			</section>
+		{% block price-list %}
+		{% endblock price-list %}
+		
+		{% block shop %}
+		{% endblock shop %}
+		
+		{% block product %}
+		{% endblock product %}
+		
+		{% block news %}
+		{% endblock news %}
+		
+		{% block catalog %}
+		{% endblock catalog %}
+		
+		{% block registration %}
+		{% endblock registration %}
+
+		{% block private_office %}
+		{% endblock private_office %}
+			
+		<footer class="main-footer">
+			<div class="container clearfix	">
+				<section class="footer-contacts" id="contacts">
+					<p>
+						<!--  Барбершоп "Бородинский"<br>
+						Адрес: г. Санкт-Петербург, Б. Конюшеннаяд, д. 19/18 <br>
+						Телефон: +7 (812) 666-02-66-->
+						{{contact_info.info |safe}}
+						<a href="#" id="how-find-us">Как нас найти?</a><br>
+					</p>
+				</section>
+				<section class="footer-soc">
+				<p>Давайте дружить!</p>
+					<a href="#" class="social-btn social-btn-vk"></a>
+					<a href="#" class="social-btn social-btn-fb"></a>
+					<a href="#" class="social-btn social-btn-inst"></a>
+				</section>
+				<section class="footer-copyright">
+					<p>Разработано:</p>
+					<a href="#" class="btn">HTML Academy</a>
+				</section>
+			</div>
+		</footer>
+		<div class="modal-login modal">
+			<div class="modal-container clearfix">
+				<h2>Личные кабинет</h2>
+				<p>Введите пожалуйста свой логин или пароль</p>
+				<form action="{{url}}" method="POST" id="login-form">
+					{%csrf_token%}
+					<input type="hidden" name="post_name" value="login">
+					<input type="text" name="login" class="username" placeholder="Логин">
+					<input type="password" name="password" class="password" placeholder="Пароль">
+					<p class="error">{{error}}</p>
+					<label>
+						<input type="checkbox" name="remember" class="remember">
+						<span class="custom-check"></span>
+						Запомните меня
+					</label>
+					<a href="#">Я забыл пароль!</a>
+					<a href="/registration/">Зарегестрироваться</a>
+					<button type="submit" class="btn">Войти</button>
+				</form>
+			</div>
+			<button class="modal-login-close modal-close" type="button"></button>
 		</div>
-	</footer>
-	<div class="modal-login modal">
-		<div class="modal-container clearfix">
-			<h2>Личные кабинет</h2>
-			<p>Введите пожалуйста свой логин или пароль</p>
-			<form action="{{url}}" method="POST" id="login-form">
-				{%csrf_token%}
-				<input type="hidden" name="post_name" value="login">
-				<input type="text" name="login" class="username" placeholder="Логин">
-				<input type="password" name="password" class="password" placeholder="Пароль">
-				<p class="error">{{error}}</p>
-				<label>
-					<input type="checkbox" name="remember" class="remember">
-					<span class="custom-check"></span>
-					Запомните меня
-				</label>
-				<a href="#">Я забыл пароль!</a>
-				<a href="/registration/">Зарегестрироваться</a>
-				<button type="submit" class="btn">Войти</button>
-			</form>
+		<div class="overlay"></div>
+		<div class="modal-map modal">
+			<div>
+				<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2919.4196630453553!2d47.49184291512543!3d42.969432679150735!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x404ea0558eca31a7%3A0xc57e499ae8b2b34f!2z0JTQttGD0LzQsCDQvNC10YfQtdGC0Yw!5e0!3m2!1sru!2sru!4v1461608035328" width="765" height="560" frameborder="0" style="border:0" allowfullscreen></iframe>
+			</div>
+			<button class="modal-map-close modal-close" type="button"></button>
 		</div>
-		<button class="modal-login-close modal-close" type="button"></button>
-	</div>
-	<div class="overlay"></div>
-	<div class="modal-map modal">
-		<div>
-			<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2919.4196630453553!2d47.49184291512543!3d42.969432679150735!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x404ea0558eca31a7%3A0xc57e499ae8b2b34f!2z0JTQttGD0LzQsCDQvNC10YfQtdGC0Yw!5e0!3m2!1sru!2sru!4v1461608035328" width="765" height="560" frameborder="0" style="border:0" allowfullscreen></iframe>
-		</div>
-		<button class="modal-map-close modal-close" type="button"></button>
 	</div>
 	<script src="{% static "jquery/jquery.min.js" %}"></script>
 	<script src="{% static "js/script.js" %}"></script>

@@ -7,6 +7,7 @@ from django.contrib.auth import forms
 from django.contrib.auth.models import User, Group
 from django.core.context_processors import csrf
 from datetime import datetime
+import json
 from shop import models
 from shop import shop_forms
 from my_cms import cms_models
@@ -148,7 +149,6 @@ def index(request):
                 # args["record_successful"] = "True"
                 return http.HttpResponseRedirect("/?record_successful=True")
     else:
-
         args["record_successful"] = request.GET.get("record_successful")
 
     return render_to_response("Index.html", args)
@@ -204,9 +204,10 @@ def order(request):
     if prod_name is None:
         return http.HttpResponseRedirect("/shop/")
 
-    try:
-        price = models.Product.objects.get(product_name=prod_name).price
-    except:
+    products = models.Product.objects.filter(product_name=prod_name)
+    if products:
+        price = products[0].price
+    else:
         return http.HttpResponseRedirect("/shop/")
 
     form = shop_forms.OrderForm()
@@ -428,11 +429,7 @@ def registration(request):
                 user_login = request.POST.get("username")
                 full_name = request.POST.get("full_name")
 
-                try:
-                    user = User.objects.create_user(user_login, None,user_password)
-                except:
-                    args["error"] = "Пользователь с таким логином уже существует!"
-                    return render_to_response("Registration.html", args)
+                user = User.objects.create_user(user_login, None, user_password)
 
                 User.objects.filter(username=user_login).update(first_name=full_name)
                 group = Group.objects.get(name="Зарегистрированные пользователи")
@@ -443,8 +440,16 @@ def registration(request):
 
                 return http.HttpResponseRedirect("/private_office/")
             else:
-                args["errors"] = reg_form.errors
-                return render_to_response("Registration.html", args)
+                errors = {}
+                errors["username"] = reg_form.errors.get("username")
+                errors["password1"] = reg_form.errors.get("password1")
+                errors["password2"] = reg_form.errors.get("password2")
+                args["errors"] = errors
+                json_errors = json.dumps(errors)
+                if request.is_ajax():
+                    return http.HttpResponse(json_errors, content_type="application/json")
+                else:
+                    return render_to_response("Registration.html", args)
     else:
         args["reg_form"] = forms.UserCreationForm()
     return render_to_response("Registration.html", args)

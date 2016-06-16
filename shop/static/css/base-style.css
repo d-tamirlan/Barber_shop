@@ -7,7 +7,7 @@ body{
 	font-weight: 700;
 	text-transform: uppercase;
 	background: #000000 url("/static/img/index-bg.jpg") no-repeat 50% 3px;
-	/*width: 960px;*/
+	height: 100%;
 }
 
 ul{
@@ -17,12 +17,19 @@ ul{
 main{
 	min-height: 465px; 
 }
+.wrapper{
+	/*display: table;*/
+	/*flex-direction: column;*/
+	/*height: 100%;*/
+	/*width: 100%;*/
+}
 .container{
 	width: 940px;
 	min-width: 940px;
 	margin: 0 auto;
 	padding: 0 10px;
 	position: relative;
+	height: 100%;
 }
 .clearfix::after{
 	content: "";
@@ -83,8 +90,8 @@ header{
 }
 .user-block{
 	position: relative;
-	float: right;
-	margin-left: 80px;
+	float: left;
+	margin-left: 30px;
 }
 .log{
 	display: block;
@@ -116,7 +123,7 @@ header{
 	line-height: 20px;
 	position: absolute;
 	display: inline;
-	right: -200px;
+	right: -80px;
 	text-decoration: none;
 	color: #ffffff;
 	padding: 24px 20px;
@@ -195,6 +202,12 @@ footer{
 	margin-top: 65px;
 	padding-top: 60px;
 	padding-bottom: 40px;
+	/*flex: 0 0 auto;*/
+	/*display: table-row;*/
+	/*height: 100%;*/
+	/*position: absolute;*/
+	/*bottom: 0;*/
+	/*width: 100%;*/
 }
 .footer-contacts{
 	float: left;
@@ -409,6 +422,7 @@ footer{
 }
 .news{
 	margin-left: 10px;
+	margin-bottom: 50px;
 }
 .news .first-img{
 	width: 300px;
