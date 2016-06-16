@@ -8,9 +8,14 @@ $(document).ready(function($){
 			data: form_data,
 			cache: false,
 			success: function(response_data){
-				$("#user_error").html(response_data.username)
-				$("#password_error").html(response_data.password1)
-				$("#password2_error").html(response_data.password2)
+				if (response_data === "ok") {
+					window.location.href = "/private_office/"
+				}
+				else{
+					$("#user_error").html(response_data.username)
+					$("#password_error").html(response_data.password1)
+					$("#password2_error").html(response_data.password2)
+				}
 			}
 		});
 	});

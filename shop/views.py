@@ -120,7 +120,7 @@ def index(request):
             if result is True:
                 # args.update(user_info(request))
                 if request.is_ajax():
-                    return http.HttpResponse("ok", content_type="tex/html")
+                    return http.HttpResponse("ok", content_type="text/html")
                 else:
                     return http.HttpResponseRedirect("/")
             else:
@@ -437,8 +437,10 @@ def registration(request):
 
                 user = auth.authenticate(username=user_login, password=user_password)
                 auth.login(request, user)
-
-                return http.HttpResponseRedirect("/private_office/")
+                if request.is_ajax():
+                    return http.HttpResponse("ok", content_type="text/html")
+                else:
+                    return http.HttpResponseRedirect("/private_office/")
             else:
                 errors = {}
                 errors["username"] = reg_form.errors.get("username")
