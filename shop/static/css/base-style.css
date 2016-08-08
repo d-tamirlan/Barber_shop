@@ -235,7 +235,7 @@ footer{
 	padding-left: 20px;
 	min-height: 90px;
 }
-.social-btn{
+.soc-btn{
 	position: relative;
 	display: inline-block;
 	vertical-align: top;
@@ -244,27 +244,27 @@ footer{
 	background: #000000 url(/static/img/sprite.png);
 }
 
-.social-btn-fb{
+.soc-btn-fb{
 	margin: 0 6px;
 	background-position: 3px -43px;
 }
-.social-btn-fb:hover{
+.soc-btn-fb:hover{
 	background-color: #ffffff;
 	background-position: 3px -1px;
 	transition: 0.5s;
 }
-.social-btn-vk{
+.soc-btn-vk{
 	background-position: -3px -235px;
 }
-.social-btn-vk:hover{
+.soc-btn-vk:hover{
 	background-color: #ffffff;
 	background-position: -3px -199px;
 	transition: 0.5s;
 }
-.social-btn-inst{
+.soc-btn-inst{
 	background-position: 0px -125px;
 }
-.social-btn-inst:hover{
+.soc-btn-inst:hover{
 	background-color: #ffffff;
 	background-position: 0px -84px;
 	transition: 0.5s;

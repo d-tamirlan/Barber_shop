@@ -80,9 +80,9 @@
 				</section>
 				<section class="footer-soc">
 				<p>Давайте дружить!</p>
-					<a href="#" class="social-btn social-btn-vk"></a>
-					<a href="#" class="social-btn social-btn-fb"></a>
-					<a href="#" class="social-btn social-btn-inst"></a>
+					<a href="#" class="soc-btn soc-btn-vk"></a>
+					<a href="#" class="soc-btn soc-btn-fb"></a>
+					<a href="#" class="soc-btn soc-btn-inst"></a>
 				</section>
 				<section class="footer-copyright">
 					<p>Разработано:</p>
@@ -132,7 +132,7 @@
 				gallery = [];
 
 			{% for photo_url in photo_gallery %}
-				gallery.push("{{photo_url}}")
+				gallery.push("{{photo_url}}");
 			{% endfor %}
 
 			$(".gallary-next").click(function(){
@@ -154,7 +154,7 @@
 				else{
 					index = gallery.length - 1;
 					$("#gallery-photo").attr("src", gallery[index]);
-				};
+				}
 			});
 		});
 	</script>

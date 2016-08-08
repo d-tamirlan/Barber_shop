@@ -2,7 +2,6 @@ $(document).ready(function($){
 	$("#login-form").submit(function(event){
 		event.preventDefault();
 		var form_data = $(this).serialize();
-		// alert(data);
 		$.ajax({
 			type: "POST",
 			url: "/",
@@ -14,7 +13,7 @@ $(document).ready(function($){
                 }
                 else{
                    $('.error').html(response_data);
-                };
+                }
             }
 		});
 	});

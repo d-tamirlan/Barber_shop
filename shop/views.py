@@ -1,7 +1,6 @@
 from django.shortcuts import render_to_response
 from django import http
 from django.core import paginator
-from django.core.exceptions import MultipleObjectsReturned, ObjectDoesNotExist
 from django.contrib import auth
 from django.contrib.auth import forms
 from django.contrib.auth.models import User, Group
